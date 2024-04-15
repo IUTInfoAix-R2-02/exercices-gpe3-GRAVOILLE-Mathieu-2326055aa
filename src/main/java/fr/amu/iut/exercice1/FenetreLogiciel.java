@@ -22,6 +22,13 @@ public class FenetreLogiciel extends Application {
         Button b4 = new Button("Submit");
         Button b5 = new Button("Cancel");
 
+        Label l1 = new Label("  ");
+        Label l2 = new Label(" ");
+
+        Label spc = new Label(" ");
+        Label spc1 = new Label(" ");
+        Label spc2 = new Label(" ");
+
         //Name
         Label lname = new Label("Name:");
         TextField tfname = new TextField(" ");
@@ -54,8 +61,9 @@ public class FenetreLogiciel extends Application {
         MenuBar top = new MenuBar(file, edit, help);
 
         //page
-        HBox center2 = new HBox(b4, b5);
-        VBox left1 = new VBox(l4, b1, b2, b3);
+        HBox center2 = new HBox(b4, l1, b5);
+        center2.setAlignment(Pos.CENTER);
+        VBox left1 = new VBox(l4, spc, b1, spc1, b2, spc2, b3);
         Separator s1 = new Separator(Orientation.VERTICAL);
         HBox left2 = new HBox(left1, s1);
         left1.setAlignment(Pos.CENTER);
@@ -64,21 +72,23 @@ public class FenetreLogiciel extends Application {
 
         //scène
         GridPane gp1 = new GridPane();
-        gp1.getChildren().addAll(lname, tfname, lemail, tfemail, lpw, tfpw, center2);
+        gp1.getChildren().addAll(lname, tfname, lemail, tfemail, lpw, tfpw);
         GridPane.setConstraints(lname, 0, 0);
         GridPane.setConstraints(tfname, 1, 0);
         GridPane.setConstraints(lemail, 0, 1);
         GridPane.setConstraints(tfemail, 1, 1);
         GridPane.setConstraints(lpw, 0, 2);
         GridPane.setConstraints(tfpw, 1, 2);
-        GridPane.setConstraints(center2, 1, 3);
         gp1.setVgap(10);
         gp1.setHgap(10);
         gp1.setAlignment(Pos.CENTER);
 
+        VBox vb = new VBox(gp1, l2, center2);
+        vb.setAlignment(Pos.CENTER);
+
         BorderPane bp1 = new BorderPane();
         bp1.setLeft(left2); //boutons à gauche
-        bp1.setCenter(gp1); //page de login au centre
+        bp1.setCenter(vb); //page de login au centre
         bp1.setBottom(bdp); //pied de page
         bp1.setTop(top); //en-tete
         Scene sc1 = new Scene(bp1);
