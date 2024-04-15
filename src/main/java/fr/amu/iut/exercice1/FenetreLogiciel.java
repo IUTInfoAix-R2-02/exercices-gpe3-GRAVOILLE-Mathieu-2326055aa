@@ -81,7 +81,9 @@ public class FenetreLogiciel extends Application {
         bp1.setCenter(gp1); //page de login au centre
         bp1.setBottom(bdp); //pied de page
         bp1.setTop(top); //en-tete
-        Scene sc1 = new Scene(bp1, 600, 400);//v = hauteur et v1 = largeur
+        Scene sc1 = new Scene(bp1);
+        primaryStage.setWidth(600);
+        primaryStage.setHeight(400);
         primaryStage.setScene(sc1);
         primaryStage.setTitle("Premier exemple manipulant les conteneurs");
         primaryStage.show();
