@@ -43,7 +43,9 @@ public class FenetreLogiciel extends Application {
         //label de bas de page
         Label label = new Label("Ceci est un label de bas de page");
         HBox llabel = new HBox(label);
+        Separator sp = new Separator(Orientation.HORIZONTAL);
         llabel.setAlignment(Pos.CENTER);
+        VBox bdp = new VBox(sp, llabel);
 
         //Bar menu haut
         Menu file = new Menu("File");
@@ -77,7 +79,7 @@ public class FenetreLogiciel extends Application {
         BorderPane bp1 = new BorderPane();
         bp1.setLeft(left2); //boutons à gauche
         bp1.setCenter(gp1); //page de login au centre
-        bp1.setBottom(llabel); //pied de page
+        bp1.setBottom(bdp); //pied de page
         bp1.setTop(top); //en-tete
         Scene sc1 = new Scene(bp1, 600, 400);//v = hauteur et v1 = largeur
         primaryStage.setScene(sc1);
