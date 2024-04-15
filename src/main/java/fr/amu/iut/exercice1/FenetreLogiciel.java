@@ -60,6 +60,23 @@ public class FenetreLogiciel extends Application {
         Menu help = new Menu("Help");
         MenuBar top = new MenuBar(file, edit, help);
 
+        SeparatorMenuItem smi1 = new SeparatorMenuItem();
+        SeparatorMenuItem smi2 = new SeparatorMenuItem();
+        SeparatorMenuItem smi3 = new SeparatorMenuItem();
+        SeparatorMenuItem smi4 = new SeparatorMenuItem();
+        SeparatorMenuItem smi5 = new SeparatorMenuItem();
+
+        MenuItem new1 = new MenuItem("New");
+        MenuItem open = new MenuItem("Open");
+        MenuItem save = new MenuItem("Save");
+        MenuItem close = new MenuItem("Close");
+        MenuItem cut = new MenuItem("Cut");
+        MenuItem copy = new MenuItem("Copy");
+        MenuItem paste = new MenuItem("Paste");
+
+        file.getItems().addAll(new1, smi1, open, smi2, save, smi3, close);
+        edit.getItems().addAll(cut, smi4, copy, smi5, paste);
+
         //page
         HBox center2 = new HBox(b4, l1, b5);
         center2.setAlignment(Pos.CENTER);
