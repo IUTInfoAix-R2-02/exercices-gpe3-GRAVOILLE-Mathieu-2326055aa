@@ -1,14 +1,17 @@
 package fr.amu.iut.exercice5;
 
+
 import javafx.scene.Group;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+
 
 class Personnage extends Group {
     protected final static double LARGEUR_MOITIE_PERSONNAGE = 10;
     protected final static double LARGEUR_PERSONNAGE = LARGEUR_MOITIE_PERSONNAGE * 2;
     private final Circle corps;
     private String direction;
+
 
     public Personnage(String direction, Color couleurContour, Color couleurRemplissage) {
         this.direction = direction;
@@ -17,12 +20,14 @@ class Personnage extends Group {
         getChildren().add(corps);
     }
 
+
     public void deplacerAGauche() {
         //    ****
         //   *    *
         //  *---   *
         //   *    *
         //    ****
+
 
         //déplacement <----
         if (getLayoutX() >= LARGEUR_PERSONNAGE) {
@@ -32,6 +37,7 @@ class Personnage extends Group {
             direction = "gauche";
         }
     }
+
 
     public void deplacerADroite(double largeurJeu) {
         //    ****
@@ -48,14 +54,21 @@ class Personnage extends Group {
         }
     }
 
+
     public void deplacerEnBas(double hauteurJeu) {
         //    *****
         //   *     *
         //  *   |   *
         //   *  |  *
         //    *****
-
+        if (getLayoutY() < hauteurJeu - LARGEUR_PERSONNAGE) {
+            setLayoutY(getLayoutY() + LARGEUR_PERSONNAGE);
+        }
+        if (!direction.equals("bas")) {
+            direction = "bas";
+        }
     }
+
 
     public void deplacerEnHaut() {
         //    *****
@@ -63,12 +76,22 @@ class Personnage extends Group {
         //  *   |   *
         //   *     *
         //    *****
-
+        if (getLayoutY() >= LARGEUR_PERSONNAGE) {
+            setLayoutY(getLayoutY() - LARGEUR_PERSONNAGE);
+        }
+        if (!direction.equals("haut")) {
+            direction = "haut";
+        }
     }
+
 
     boolean estEnCollision(Personnage autrePersonnage) {
         return getBoundsInParent().contains(autrePersonnage.getBoundsInParent())
                 || autrePersonnage.getBoundsInParent().contains(getBoundsInParent());
     }
 
+
 }
+
+
+
