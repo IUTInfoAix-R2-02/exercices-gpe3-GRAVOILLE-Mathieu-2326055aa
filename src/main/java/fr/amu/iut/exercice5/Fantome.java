@@ -51,7 +51,7 @@ public class Fantome extends Personnage {
     @Override
     public void deplacerADroite(double largeurJeu) {
         super.deplacerADroite(largeurJeu);
-        //sens de la bouche
+        //sens des yeux
         retineGauche.setCenterX(oeilGauche.getCenterX() + 1);
         retineGauche.setCenterY(oeilGauche.getCenterY());
 
@@ -62,6 +62,7 @@ public class Fantome extends Personnage {
     @Override
     public void deplacerEnBas(double hauteurJeu) {
         super.deplacerEnBas(hauteurJeu);
+        //sens des yeux
         retineGauche.setCenterX(oeilGauche.getCenterX());
         retineGauche.setCenterY(oeilGauche.getCenterY() + 1);
 
@@ -72,12 +73,11 @@ public class Fantome extends Personnage {
     @Override
     public void deplacerEnHaut() {
         super.deplacerEnHaut();
+        //sens des yeux
         retineGauche.setCenterX(oeilGauche.getCenterX());
         retineGauche.setCenterY(oeilGauche.getCenterY() - 1);
 
         retineDroite.setCenterX(oeilDroit.getCenterX());
         retineDroite.setCenterY(oeilDroit.getCenterY() - 1);
     }
-
-
 }
