@@ -3,6 +3,7 @@ package fr.amu.iut.exercice7;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -23,15 +24,19 @@ public class CounterController implements Initializable {
     VBox counterVBox;
     @FXML
     Label counterLabel = new Label("0");
+    @FXML
+    Button decrementButton;
+    @FXML
+    Button incrementButton;
 
     public void increment() {
         counter++;
-        counterLabel = new Label(String.valueOf(counter));
+        counterLabel.setText(String.valueOf(counter));
     }
 
     public void decrement() {
         counter--;
-        counterLabel = new Label(String.valueOf(counter));
+        counterLabel.setText(String.valueOf(counter));
     }
 
     @Override

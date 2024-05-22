@@ -10,6 +10,8 @@ import javafx.stage.Stage;
 import javafx.scene.control.*;
 import javafx.stage.StageStyle;
 
+import java.util.Random;
+
 public class TicTacToe extends Application {
 
     @Override
@@ -40,6 +42,10 @@ public class TicTacToe extends Application {
         label7.setGraphic(vide);
         label8.setGraphic(vide);
         label9.setGraphic(croix);
+
+//        Random random = new Random();
+//        int nombre = random.nextInt(3);
+
 
         grid.getChildren().addAll(label, label2, label3, label4, label5, label6, label7, label8, label9);
         GridPane.setConstraints(label, 0, 0);
