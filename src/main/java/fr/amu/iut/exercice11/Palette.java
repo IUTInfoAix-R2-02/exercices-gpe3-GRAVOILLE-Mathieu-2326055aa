@@ -2,10 +2,7 @@ package fr.amu.iut.exercice1;
 
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -70,29 +67,34 @@ public class Palette extends Application {
         StringProperty message = new SimpleStringProperty();
         StringProperty couleurPanneau = new SimpleStringProperty("#000000");
 
-        texteDuHaut.textProperty().bind(Bindings.concat(
-                message, " choisi ", nbFois, " fois"
-        ));
+        private void createBindings(message, nbFois, couleurPanneau){
+//            BooleanProperty pasEncoreDeClic;
+            texteDuHaut.textProperty().bind(Bindings.concat(message, " choisi ", nbFois, " fois"));
+            panneau.styleProperty().bind(Bindings.concat("-fx-background-color: ", couleurPanneau));
+        }
 
         vert.setOnAction(event -> {
-            this.nbVert=nbVert+1;
-            panneau.setStyle("-fx-background-color: green");
+            nbVert++;
+//            panneau.setStyle("-fx-background-color: green");
             nbFois.setValue(nbVert);
-            message.setValue(vert.textProperty().get());
+            message.setValue("vert");
+            couleurPanneau.setValue("#28B463");
 //            texteDuHaut.setText(message.getValue()+" choisi "+nbFois.getValue()+" fois");
         });
         rouge.setOnAction(event -> {
-            this.nbRouge=nbRouge+1;
-            panneau.setStyle("-fx-background-color: red");
+            nbRouge++;
+//            panneau.setStyle("-fx-background-color: red");
             nbFois.setValue(nbRouge);
-            message.setValue(rouge.textProperty().get());
+            message.setValue("rouge");
+            couleurPanneau.setValue("#C70039");
 //            texteDuHaut.setText(message.getValue()+" choisi "+nbFois.getValue()+" fois");
         });
         bleu.setOnAction(event -> {
-            this.nbBleu=nbBleu+1;
-            panneau.setStyle("-fx-background-color: blue");
+            nbBleu++;
+//            panneau.setStyle("-fx-background-color: blue");
             nbFois.setValue(nbBleu);
-            message.setValue(bleu.textProperty().get());
+            message.setValue("bleu");
+            couleurPanneau.setValue("#2e86c1");
 //            texteDuHaut.setText(message.getValue()+" choisi "+nbFois.getValue()+" fois");
         });
 
