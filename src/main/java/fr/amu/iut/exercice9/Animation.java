@@ -17,7 +17,7 @@ public class Animation extends Application {
         root.setCenter(customButton);
         Scene scene = new Scene(root, 400, 400);
 
-        Duration duration = Duration.millis(1500);
+        Duration duration = Duration.millis(50000);
         TranslateTransition transition1 = new TranslateTransition(duration, customButton);
         transition1.setByX(150);
         transition1.setByY(-150);
