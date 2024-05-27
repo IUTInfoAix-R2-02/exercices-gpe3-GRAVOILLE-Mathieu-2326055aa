@@ -3,14 +3,11 @@ package fr.amu.iut.exercice1;
 import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -18,6 +15,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import static javafx.beans.binding.Bindings.when;
 
 @SuppressWarnings("Duplicates")
 public class Palette extends Application {
@@ -38,6 +37,9 @@ public class Palette extends Application {
 
     private Label texteDuBas;
 
+    private IntegerProperty nbFois;
+    private StringProperty message;
+    private StringProperty couleurPanneau;
 
     @Override
     public void start(Stage primaryStage) {
@@ -63,15 +65,9 @@ public class Palette extends Application {
         bleu = new Button("Bleu");
 
         /* VOTRE CODE ICI */
-        IntegerProperty nbFois = new SimpleIntegerProperty();
-        StringProperty message = new SimpleStringProperty();
-        StringProperty couleurPanneau = new SimpleStringProperty("#000000");
-
-        private void createBindings(message, nbFois, couleurPanneau){
-//            BooleanProperty pasEncoreDeClic;
-            texteDuHaut.textProperty().bind(Bindings.concat(message, " choisi ", nbFois, " fois"));
-            panneau.styleProperty().bind(Bindings.concat("-fx-background-color: ", couleurPanneau));
-        }
+        nbFois = new SimpleIntegerProperty();
+        message = new SimpleStringProperty();
+        couleurPanneau = new SimpleStringProperty("#000000");
 
         vert.setOnAction(event -> {
             nbVert++;
@@ -104,10 +100,19 @@ public class Palette extends Application {
         root.setTop(texteDuHaut);
         root.setBottom(bas);
 
+        createBindings();
         Scene scene = new Scene(root);
 
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    private void createBindings(){
+        BooleanProperty pasEncoreDeClic = new SimpleBooleanProperty(false);
+        pasEncoreDeClic.bind(Bindings.equal(nbFois, 0));
+        texteDuHaut.textProperty().bind(Bindings.when(pasEncoreDeClic).then("Clique sur un bouton grosse ****")
+                .otherwise(Bindings.concat(message, " choisi ", nbFois, " fois")));
+        panneau.styleProperty().bind(Bindings.when(pasEncoreDeClic).then("")
+                .otherwise(Bindings.concat("-fx-background-color: ", couleurPanneau)));
     }
 }
 
