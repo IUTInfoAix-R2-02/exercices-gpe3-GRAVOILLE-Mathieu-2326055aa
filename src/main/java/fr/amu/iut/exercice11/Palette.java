@@ -67,31 +67,25 @@ public class Palette extends Application {
         /* VOTRE CODE ICI */
         nbFois = new SimpleIntegerProperty();
         message = new SimpleStringProperty();
-        couleurPanneau = new SimpleStringProperty("#000000");
+        couleurPanneau = new SimpleStringProperty();
 
         vert.setOnAction(event -> {
             nbVert++;
-//            panneau.setStyle("-fx-background-color: green");
             nbFois.setValue(nbVert);
-            message.setValue("vert");
+            message.setValue("Vert");
             couleurPanneau.setValue("#28B463");
-//            texteDuHaut.setText(message.getValue()+" choisi "+nbFois.getValue()+" fois");
         });
         rouge.setOnAction(event -> {
             nbRouge++;
-//            panneau.setStyle("-fx-background-color: red");
             nbFois.setValue(nbRouge);
-            message.setValue("rouge");
+            message.setValue("Rouge");
             couleurPanneau.setValue("#C70039");
-//            texteDuHaut.setText(message.getValue()+" choisi "+nbFois.getValue()+" fois");
         });
         bleu.setOnAction(event -> {
             nbBleu++;
-//            panneau.setStyle("-fx-background-color: blue");
             nbFois.setValue(nbBleu);
-            message.setValue("bleu");
+            message.setValue("Bleu");
             couleurPanneau.setValue("#2e86c1");
-//            texteDuHaut.setText(message.getValue()+" choisi "+nbFois.getValue()+" fois");
         });
 
         boutons.getChildren().addAll(vert, rouge, bleu);
@@ -109,10 +103,12 @@ public class Palette extends Application {
     private void createBindings(){
         BooleanProperty pasEncoreDeClic = new SimpleBooleanProperty(false);
         pasEncoreDeClic.bind(Bindings.equal(nbFois, 0));
-        texteDuHaut.textProperty().bind(Bindings.when(pasEncoreDeClic).then("Clique sur un bouton grosse ****")
+        texteDuHaut.textProperty().bind(Bindings.when(pasEncoreDeClic).then("Cliquez sur un bouton")
                 .otherwise(Bindings.concat(message, " choisi ", nbFois, " fois")));
-        panneau.styleProperty().bind(Bindings.when(pasEncoreDeClic).then("")
-                .otherwise(Bindings.concat("-fx-background-color: ", couleurPanneau)));
+        panneau.styleProperty().bind(Bindings.concat("-fx-background-color: ", couleurPanneau));
+        texteDuBas.textProperty().bind(Bindings.when(pasEncoreDeClic).then("")
+                .otherwise(Bindings.concat("Le ", message, " est une jolie couleur !")));
+        texteDuBas.styleProperty().bind(Bindings.concat("-fx-text-fill: ", couleurPanneau));
     }
 }
 
